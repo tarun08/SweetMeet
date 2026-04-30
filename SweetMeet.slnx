@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="SweetMeet.API/SweetMeet.API.csproj" Id="3c166344-d855-4d53-90b1-080c1e4602ff" />
+  <Project Path="SweetMeet.Data/SweetMeet.Data.csproj" />
+  <Project Path="SweetMeet.Domain/SweetMeet.Domain.csproj" />
+  <Project Path="SweetMeet.Infrastructure/SweetMeet.Infrastructure.csproj" />
+</Solution>

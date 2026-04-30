@@ -1,0 +1,10 @@
+@SweetMeet.API_HostAddress = http://localhost:5101
+
+GET {{SweetMeet.API_HostAddress}}/api/members/
+Accept: application/json
+
+
+GET {{SweetMeet.API_HostAddress}}/api/members/1
+Accept: application/json
+
+###
