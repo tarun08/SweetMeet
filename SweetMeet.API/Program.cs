@@ -1,11 +1,18 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi;
 using SweetMeet.Data.Context;
+using SweetMeet.Data.Repositories;
+using SweetMeet.Domain.Repositories.Interfaces;
+using SweetMeet.Domain.Services;
+using SweetMeet.Domain.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services
 builder.Services.AddControllers();
+builder.Services.AddScoped<IAccountsService, AccountsService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 
 // Add EF Core DbContext
 builder.Services.AddDbContext<AppDbContext>(opt =>

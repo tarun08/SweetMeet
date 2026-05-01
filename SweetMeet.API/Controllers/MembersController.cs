@@ -5,9 +5,7 @@ using SweetMeet.Domain.Entities;
 
 namespace SweetMeet.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class MembersController(AppDbContext appDbContext) : ControllerBase
+    public class MembersController(AppDbContext appDbContext) : BaseApiController
     {
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<AppUser>>> GetMembers()

@@ -95,3 +95,4 @@ SweetMeet.Domain/bin/
 # Ignore migration snapshots except .cs files
 SweetMeet.Data/Migrations/*
 !SweetMeet.Data/Migrations/*.cs
+/SweetMeet.Client/ssl
