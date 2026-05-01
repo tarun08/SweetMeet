@@ -1,10 +1,13 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using SweetMeet.Data.Context;
 using SweetMeet.Data.Repositories;
 using SweetMeet.Domain.Repositories.Interfaces;
 using SweetMeet.Domain.Services;
 using SweetMeet.Domain.Services.Interfaces;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddScoped<IAccountsService, AccountsService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 
 // Add EF Core DbContext
@@ -20,6 +24,18 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 
 
 builder.Services.AddCors();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        var tokenKey = builder.Configuration["TokenKey"] ?? throw new Exception("Token key not found");
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenKey)),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -40,6 +56,8 @@ app.UseCors(x => x
     .WithOrigins("http://localhost:4200", "https://localhost:4200")
 );
 
+app.UseAuthentication();
+app.UseAuthorization();
 
 // Configure HTTP request pipeline
 if (app.Environment.IsDevelopment())

@@ -6,6 +6,6 @@ namespace SweetMeet.Domain.Services.Interfaces
     {
         Task<AppUser> Register(AppUser appUser);
 
-        Task<AppUser?> Login(string email, string password);
+        Task<AppUser?> LoginAsync(string email, string password);
     }
 }

@@ -15,7 +15,7 @@ namespace SweetMeet.Domain.Services
             return await userRepository.Add(appUser);
         }
 
-        public async Task<AppUser?> Login(string email, string password)
+        public async Task<AppUser?> LoginAsync(string email, string password)
         {
             AppUser? user = await userRepository.GetByEmail(email);
 
