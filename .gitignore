@@ -34,8 +34,8 @@ bld/
 
 # Visual Studio 2015/2017/2019/2022 cache/options directory
 .vs/
-# Uncomment if you use Visual Studio Code
-#.vscode/
+# Ignore Visual Studio Code settings folder
+.vscode/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
@@ -78,3 +78,20 @@ node_modules/
 appsettings.Local.json
 secrets.json
 *.Backup.tmp
+
+# Ignore unnecessary and irrelevant files
+nothing
+
+# Ignore all obj and bin folders in all projects
+SweetMeet.Data/obj/
+SweetMeet.Infrastructure/obj/
+SweetMeet.API/obj/
+SweetMeet.Domain/obj/
+SweetMeet.Data/bin/
+SweetMeet.Infrastructure/bin/
+SweetMeet.API/bin/
+SweetMeet.Domain/bin/
+
+# Ignore migration snapshots except .cs files
+SweetMeet.Data/Migrations/*
+!SweetMeet.Data/Migrations/*.cs
