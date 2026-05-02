@@ -9,6 +9,7 @@ namespace SweetMeet.API.Controllers
     [Authorize]
     public class MembersController(AppDbContext appDbContext) : BaseApiController
     {
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<AppUser>>> GetMembers()
         {
