@@ -21,7 +21,7 @@ namespace SweetMeet.Domain.Services
 
             if(user == null)
             {
-                throw new UnauthorizedAccessException("Invalid access");
+                throw new UnauthorizedAccessException();
             }
 
             bool isValid = BCrypt.Net.BCrypt.Verify(password, user.PasswordHash);
@@ -32,7 +32,7 @@ namespace SweetMeet.Domain.Services
             }
             else
             {
-                throw new UnauthorizedAccessException("Invalid access");
+                throw new UnauthorizedAccessException();
             }
         }
     }

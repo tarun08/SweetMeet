@@ -35,9 +35,18 @@ namespace SweetMeet.API.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<UserDto?>> Login(LoginDto loginDto)
         {
-            AppUser? appUser = await accountsService.LoginAsync(loginDto.Email, loginDto.Password);
+            AppUser? appUser = null;
+            try
+            {
+                appUser = await accountsService.LoginAsync(loginDto.Email, loginDto.Password);
+            }
 
-            if(appUser == null)
+            catch (UnauthorizedAccessException)
+            {
+                return Unauthorized("Invalid email or password.");
+            }
+
+            if (appUser == null)
             {
                 throw new UnauthorizedAccessException("Invalid Access");
             }
